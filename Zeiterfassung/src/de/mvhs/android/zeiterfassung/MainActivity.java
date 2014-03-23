@@ -23,8 +23,9 @@ public class MainActivity extends Activity {
 		super.onStart();
 		
 		// Buttons registrieren
-		Button commandStart = (Button) findViewById(R.id.StartCommand);
-		Button commandEnd = (Button) findViewById(R.id.EndCommand);
+		final Button commandStart = (Button) findViewById(R.id.StartCommand);
+		final Button commandEnd = (Button) findViewById(R.id.EndCommand);
+		commandEnd.setEnabled(false);
 		
 		// Click Event registrieren
 		commandStart.setOnClickListener(new OnClickListener() {
@@ -34,8 +35,13 @@ public class MainActivity extends Activity {
 				// Verhalten beim Klick auf den Strat Button
 				EditText startTime = (EditText) findViewById(R.id.StartTime);
 				startTime.setText(new Date().toString());
-			}
+				commandEnd.setEnabled(true);
+				commandStart.setEnabled(false);
+				}
+		
+			
 		});
+			
 		
 		commandEnd.setOnClickListener(new OnClickListener() {
 			
@@ -44,6 +50,7 @@ public class MainActivity extends Activity {
 				// Verhalten beim Click auf den Ende-Button
 				EditText endTime = (EditText) findViewById(R.id.EndTime);
 				endTime.setText(new Date().toString());
+				commandEnd.setEnabled(false);
 			}
 		});
 	}
